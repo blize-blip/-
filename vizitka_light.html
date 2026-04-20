@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сайты-поздравления — на заказ</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --rose: #e8a0a0;
+  --blush: #f5d0d0;
+  --cream: #fdf6f0;
+  --deep: #6b3a3a;
+  --gold: #c9a96e;
+  --muted: #9b7b7b;
+}
+html { scroll-snap-type: y mandatory; overflow-y: scroll; height: 100%; }
+body { font-family: 'Cormorant Garamond', serif; background: var(--cream); }
+
+.petals-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.petal {
+  position: absolute; border-radius: 50% 0 50% 0;
+  background: radial-gradient(ellipse at 30% 30%, #f9d4d4, #e8a0a0aa);
+  animation: fall linear infinite; opacity: 0;
+}
+@keyframes fall {
+  0% { transform: translateY(-40px) rotate(0deg); opacity:0; }
+  10% { opacity:0.6; }
+  90% { opacity:0.3; }
+  100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity:0; }
+}
+
+.nav-dots {
+  position: fixed; right: 22px; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 12px; z-index: 100;
+}
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--rose); opacity: 0.35; cursor: pointer;
+  transition: all 0.3s; border: none;
+}
+.dot.active { opacity: 1; transform: scale(1.6); background: var(--deep); }
+
+.slide {
+  height: 100vh; scroll-snap-align: start;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; padding: 40px 20px;
+}
+.slide::before, .slide::after {
+  content: ''; position: absolute;
+  width: 72px; height: 72px;
+  border-color: var(--gold); border-style: solid; opacity: 0.35;
+}
+.slide::before { top: 22px; left: 22px; border-width: 1px 0 0 1px; }
+.slide::after { bottom: 22px; right: 22px; border-width: 0 1px 1px 0; }
+
+/* ---- SLIDE 1 — Hero ---- */
+.slide-1 { background: linear-gradient(145deg, #fdf0f0, #fce8e8 50%, #f5d8d8); }
+.slide-1 .inner {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 28px; text-align: center; z-index: 1;
+}
+.photo-placeholder {
+  position: relative; width: 240px; height: 300px;
+  border-radius: 4px; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: linear-gradient(145deg, #f8e8e8, #f0d0d0);
+  border: 1px dashed var(--rose);
+}
+.photo-placeholder::before {
+  content: ''; position: absolute; inset: -10px;
+  border: 1px solid var(--gold); border-radius: 4px; opacity: 0.5;
+}
+.photo-placeholder .ph-icon { font-size: 48px; opacity: 0.4; margin-bottom: 10px; }
+.photo-placeholder .ph-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; color: var(--muted);
+  font-style: italic; text-align: center; padding: 0 20px; line-height: 1.6;
+}
+.badge {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--gold); color: white;
+  font-family: 'Dancing Script', cursive;
+  font-size: 12px; padding: 4px 10px; border-radius: 20px;
+  opacity: 0.85;
+}
+.label-top {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(13px, 3vw, 17px);
+  color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 6vw, 46px);
+  color: var(--deep); font-weight: 700; line-height: 1.2;
+}
+.hero-title em { font-style: italic; color: var(--rose); }
+.hero-sub {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(15px, 3.5vw, 22px);
+  color: var(--gold);
+}
+.ornament { color: var(--gold); opacity: 0.5; letter-spacing: 10px; font-size: 16px; }
+
+/* ---- SLIDE 2 ---- */
+.slide-2 { background: linear-gradient(160deg, #fff8f5, #fdeee8); }
+.slide-2 .inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 44px; align-items: center; max-width: 860px; z-index: 1;
+}
+.text-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(34px, 7vw, 60px);
+  color: var(--deep); font-weight: 700; line-height: 1.1; margin-bottom: 6px;
+}
+.text-block h2 span {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(17px, 3.5vw, 26px);
+  color: var(--gold); display: block; font-weight: 600; letter-spacing: 0.05em;
+}
+.text-block p {
+  font-size: clamp(14px, 2.2vw, 17px);
+  color: #7a5555; line-height: 1.95; font-weight: 300; margin-top: 16px;
+}
+.photo-portrait-ph {
+  width: 100%; max-width: 260px; height: 330px;
+  border-radius: 120px 4px 120px 4px;
+  background: linear-gradient(145deg, #f8e4d8, #f0d0c0);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1px dashed var(--rose); position: relative;
+  box-shadow: -10px 10px 40px rgba(180,100,100,0.12);
+}
+.photo-portrait-ph .ph-icon { font-size: 40px; opacity: 0.35; margin-bottom: 8px; }
+.photo-portrait-ph .ph-text {
+  font-size: 13px; color: var(--muted);
+  font-style: italic; text-align: center; padding: 0 16px; line-height: 1.6;
+}
+
+/* ---- SLIDE 3 — Quote ---- */
+.slide-3 { background: #1a0f0f; }
+.slide-3::before { border-color: var(--gold); }
+.slide-3::after { border-color: var(--gold); }
+.slide-3 .inner {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 32px; text-align: center; z-index: 1; max-width: 680px;
+}
+.quote-ph {
+  width: 160px; height: 160px; border-radius: 50%;
+  background: linear-gradient(145deg, #2a1515, #1a0f0f);
+  border: 1.5px dashed var(--gold);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 0 40px rgba(201,169,110,0.15);
+}
+.quote-ph .ph-icon { font-size: 36px; opacity: 0.35; margin-bottom: 6px; }
+.quote-ph .ph-text { font-size: 12px; color: #9b7b7b; font-style: italic; text-align: center; padding: 0 14px; line-height: 1.6; }
+.quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 68px; color: var(--gold); line-height: 0.5; opacity: 0.65;
+}
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px, 3vw, 23px);
+  color: #f5e8e8; font-style: italic; line-height: 1.85; font-weight: 300;
+}
+
+/* ---- SLIDE 4 — Together ---- */
+.slide-4 { background: linear-gradient(135deg, #fdf0e8, #f8e4d8); }
+.slide-4 .inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 44px; align-items: center; max-width: 860px; z-index: 1;
+}
+.photo-duo-ph {
+  width: 100%; max-width: 300px; height: 360px;
+  border-radius: 4px 120px 4px 120px;
+  background: linear-gradient(145deg, #f8ece0, #f0dac8);
+  border: 1px dashed var(--rose);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 12px 12px 40px rgba(180,100,100,0.12);
+}
+.photo-duo-ph .ph-icon { font-size: 40px; opacity: 0.35; margin-bottom: 8px; }
+.photo-duo-ph .ph-text { font-size: 13px; color: var(--muted); font-style: italic; text-align: center; padding: 0 18px; line-height: 1.6; }
+.slide-4 .text-block p {
+  font-size: clamp(15px, 2.4vw, 19px);
+  color: var(--deep); line-height: 1.9; font-style: italic; font-weight: 300;
+}
+.accent-line { width: 50px; height: 1px; background: var(--gold); margin-bottom: 20px; opacity: 0.7; }
+
+/* ---- SLIDE 5 — CTA ---- */
+.slide-5 { background: radial-gradient(ellipse at center, #ffeaea 0%, #fcd8d8 40%, #f0c0c0 100%); }
+.slide-5 .inner {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 24px; text-align: center; z-index: 1;
+}
+.finale-ph {
+  width: 200px; height: 250px;
+  border-radius: 50% 50% 4px 4px;
+  background: linear-gradient(145deg, #f8e0e0, #f0cece);
+  border: 1px dashed var(--rose);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 16px 50px rgba(180,80,80,0.2);
+}
+.finale-ph .ph-icon { font-size: 36px; opacity: 0.35; margin-bottom: 6px; }
+.finale-ph .ph-text { font-size: 12px; color: var(--muted); font-style: italic; text-align: center; padding: 0 14px; line-height: 1.6; }
+.finale-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 5vw, 38px);
+  color: var(--deep); line-height: 1.3;
+}
+.finale-title em { font-style: italic; color: var(--rose); }
+.cta-box {
+  background: var(--deep); color: var(--cream);
+  padding: 20px 32px; border-radius: 4px;
+  max-width: 360px; text-align: center;
+}
+.cta-box .cta-label {
+  font-family: 'Dancing Script', cursive;
+  font-size: 14px; color: var(--gold); letter-spacing: 0.15em;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.cta-box .cta-price {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 6vw, 40px);
+  color: white; font-weight: 700; line-height: 1;
+}
+.cta-box .cta-price span {
+  font-size: clamp(14px, 2.5vw, 18px);
+  color: var(--rose); font-family: 'Cormorant Garamond', serif;
+  display: block; margin-top: 6px; font-style: italic;
+}
+.cta-box .cta-desc {
+  font-size: 13px; color: #c0a0a0; margin-top: 12px; line-height: 1.6;
+}
+.cta-btn {
+  display: inline-block; margin-top: 8px;
+  background: var(--gold); color: white;
+  font-family: 'Dancing Script', cursive; font-size: 18px;
+  padding: 10px 28px; border-radius: 40px;
+  text-decoration: none; letter-spacing: 0.05em;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: pulse-btn 2s ease-in-out infinite alternate;
+}
+@keyframes pulse-btn {
+  from { box-shadow: 0 4px 20px rgba(201,169,110,0.3); }
+  to { box-shadow: 0 8px 32px rgba(201,169,110,0.6); }
+}
+.cta-btn:hover { transform: translateY(-2px); }
+.features {
+  display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+}
+.feat {
+  font-size: 13px; color: var(--muted);
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  display: flex; align-items: center; gap: 6px;
+}
+.feat span { font-size: 16px; }
+
+.fade-up { opacity: 0; transform: translateY(26px); transition: opacity 0.85s ease, transform 0.85s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up:nth-child(2) { transition-delay: 0.12s; }
+.fade-up:nth-child(3) { transition-delay: 0.24s; }
+.fade-up:nth-child(4) { transition-delay: 0.36s; }
+.fade-up:nth-child(5) { transition-delay: 0.48s; }
+.fade-up:nth-child(6) { transition-delay: 0.6s; }
+
+@media (max-width: 600px) {
+  .slide-2 .inner, .slide-4 .inner { grid-template-columns: 1fr; gap: 22px; }
+  .photo-portrait-ph, .photo-duo-ph { max-width: 220px; height: 250px; margin: 0 auto; }
+  .slide-2 .inner .photo-portrait-ph { order: -1; }
+}
+</style>
+</head>
+<body>
+<div class="petals-bg" id="petals"></div>
+<nav class="nav-dots" id="navDots">
+  <button class="dot active" data-slide="0"></button>
+  <button class="dot" data-slide="1"></button>
+  <button class="dot" data-slide="2"></button>
+  <button class="dot" data-slide="3"></button>
+  <button class="dot" data-slide="4"></button>
+</nav>
+
+<!-- SLIDE 1 -->
+<section class="slide slide-1" id="slide-0">
+  <div class="inner">
+    <div class="photo-placeholder fade-up">
+      <div class="badge">ваше фото</div>
+      <div class="ph-icon">🌸</div>
+      <div class="ph-text">Здесь будет фото<br>именинника</div>
+    </div>
+    <div class="fade-up"><div class="label-top">✦ сайт-поздравление ✦</div></div>
+    <div class="fade-up">
+      <div class="hero-title">Милая <em>Настя</em>,<br>с днём рождения!</div>
+    </div>
+    <div class="fade-up">
+      <div class="hero-sub">Пусть этот день будет особенным 🌷</div>
+    </div>
+    <div class="ornament fade-up">✦ ✦ ✦</div>
+  </div>
+</section>
+
+<!-- SLIDE 2 -->
+<section class="slide slide-2" id="slide-1">
+  <div class="inner">
+    <div class="text-block">
+      <h2 class="fade-up">Тепло<br><span>и с любовью</span></h2>
+      <p class="fade-up">Каждый сайт создаётся вручную — с твоими фотографиями, именем и словами, которые идут от сердца. Никаких шаблонов, только живые и настоящие поздравления.</p>
+      <p class="fade-up" style="margin-top:12px;">Открыл ссылку — и сразу почувствовал, что это сделали именно для тебя.</p>
+    </div>
+    <div class="photo-portrait-ph fade-up">
+      <div class="ph-icon">📸</div>
+      <div class="ph-text">Здесь будет ваше фото</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3 -->
+<section class="slide slide-3" id="slide-2">
+  <div class="inner">
+    <div class="quote-ph fade-up">
+      <div class="ph-icon">🌙</div>
+      <div class="ph-text">Ваше фото</div>
+    </div>
+    <div class="quote-mark fade-up">"</div>
+    <p class="quote-text fade-up">Ты заслуживаешь, чтобы тебя поздравляли красиво. Не просто сообщение в мессенджере — а что-то тёплое, живое и твоё. Именно такое мы и делаем.</p>
+    <div class="quote-mark fade-up" style="transform:rotate(180deg)">"</div>
+  </div>
+</section>
+
+<!-- SLIDE 4 -->
+<section class="slide slide-4" id="slide-3">
+  <div class="inner">
+    <div class="photo-duo-ph fade-up">
+      <div class="ph-icon">🫶</div>
+      <div class="ph-text">Здесь будет<br>ваше фото</div>
+    </div>
+    <div class="text-block">
+      <div class="accent-line fade-up"></div>
+      <p class="fade-up">Можно добавить несколько фотографий, написать тёплые слова о человеке, и он получит ссылку, которую захочется пересматривать снова и снова.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5 — CTA -->
+<section class="slide slide-5" id="slide-4">
+  <div class="inner">
+    <div class="finale-ph fade-up">
+      <div class="ph-icon">✨</div>
+      <div class="ph-text">Ваше фото</div>
+    </div>
+    <div class="finale-title fade-up">Закажи сайт,<br>который <em>запомнят</em></div>
+    <div class="cta-box fade-up">
+      <div class="cta-label">✦ стоимость ✦</div>
+      <div class="cta-price">
+        от 300 ₽
+        <span>готово в течение суток</span>
+      </div>
+      <div class="cta-desc">5 слайдов · ваши фото · индивидуальный текст · ссылка навсегда</div>
+      <a class="cta-btn" href="https://t.me/username">Написать в Telegram</a>
+    </div>
+    <div class="features fade-up">
+      <div class="feat"><span>🎂</span> Дни рождения</div>
+      <div class="feat"><span>💍</span> Годовщины</div>
+      <div class="feat"><span>🎓</span> Выпускные</div>
+      <div class="feat"><span>💌</span> Признания</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const petalsEl = document.getElementById('petals');
+  for (let i = 0; i < 16; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    const size = 6 + Math.random() * 6;
+    p.style.cssText = `left:${Math.random()*100}%;width:${size}px;height:${size*1.4}px;animation-duration:${7+Math.random()*7}s;animation-delay:${Math.random()*8}s;`;
+    petalsEl.appendChild(p);
+  }
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach(d => d.addEventListener('click', () => slides[+d.dataset.slide].scrollIntoView({ behavior:'smooth' })));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = [...slides].indexOf(e.target);
+        dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+        e.target.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
+      }
+    });
+  }, { threshold: 0.5 });
+  slides.forEach(s => obs.observe(s));
+  slides[0].querySelectorAll('.fade-up').forEach((el,i) => setTimeout(() => el.classList.add('visible'), 200+i*150));
+</script>
+</body>
+</html>
